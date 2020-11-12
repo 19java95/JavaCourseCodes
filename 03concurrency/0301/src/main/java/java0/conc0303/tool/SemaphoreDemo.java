@@ -1,14 +1,14 @@
 package java0.conc0303.tool;
 
 import java.util.concurrent.Semaphore;
+import java.util.stream.IntStream;
 
 public class SemaphoreDemo {
     
     public static void main(String[] args) {
         int N = 8;            //工人数
-        Semaphore semaphore = new Semaphore(5); //机器数目
-        for (int i = 0; i < N; i++)
-            new Worker(i, semaphore).start();
+        Semaphore semaphore = new Semaphore(3); //机器数目
+        IntStream.range(0, N).forEach(i -> new Worker(i, semaphore).start());
     }
     
     static class Worker extends Thread {
