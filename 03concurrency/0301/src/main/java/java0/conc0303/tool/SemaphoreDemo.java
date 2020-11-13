@@ -9,6 +9,9 @@ public class SemaphoreDemo {
         int N = 8;            //工人数
         Semaphore semaphore = new Semaphore(3); //机器数目
         IntStream.range(0, N).forEach(i -> new Worker(i, semaphore).start());
+//        Semaphore semaphore = new Semaphore(1); //机器数目
+//        for (int i = 0; i < N; i++)
+//            new Worker(i, semaphore).start();
     }
     
     static class Worker extends Thread {
