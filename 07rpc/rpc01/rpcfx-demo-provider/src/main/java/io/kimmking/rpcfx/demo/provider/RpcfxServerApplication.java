@@ -32,7 +32,7 @@ public class RpcfxServerApplication {
 
 	@Bean
 	public RpcfxInvoker createInvoker(@Autowired RpcfxResolver resolver){
-		return new RpcfxInvoker(resolver);
+		return new RpcfxInvoker(resolver,"io.kimmking.rpcfx.demo.provider");
 	}
 
 	@Bean
@@ -40,16 +40,16 @@ public class RpcfxServerApplication {
 		return new DemoResolver();
 	}
 
-	// 能否去掉name
-	//
-	@Bean(name = "io.kimmking.rpcfx.demo.api.UserService")
-	public UserService createUserService(){
-		return new UserServiceImpl();
-	}
-
-	@Bean(name = "io.kimmking.rpcfx.demo.api.OrderService")
-	public OrderService createOrderService(){
-		return new OrderServiceImpl();
-	}
+//	// 能否去掉name
+//	//
+//	@Bean(name = "io.kimmking.rpcfx.demo.api.UserService")
+//	public UserService createUserService(){
+//		return new UserServiceImpl();
+//	}
+//
+//	@Bean(name = "io.kimmking.rpcfx.demo.api.OrderService")
+//	public OrderService createOrderService(){
+//		return new OrderServiceImpl();
+//	}
 
 }

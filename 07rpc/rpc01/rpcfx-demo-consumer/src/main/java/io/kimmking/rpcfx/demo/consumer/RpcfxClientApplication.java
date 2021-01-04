@@ -7,6 +7,8 @@ import io.kimmking.rpcfx.demo.api.User;
 import io.kimmking.rpcfx.demo.api.UserService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.lang.reflect.InvocationTargetException;
+
 @SpringBootApplication
 public class RpcfxClientApplication {
 
@@ -15,7 +17,7 @@ public class RpcfxClientApplication {
 	// nexus, userserivce -> userdao -> user
 	//
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
 
 		// UserService service = new xxx();
 		// service.findById
