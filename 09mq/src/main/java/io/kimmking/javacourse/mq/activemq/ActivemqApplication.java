@@ -7,7 +7,13 @@ import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.jms.*;
+import javax.jms.Destination;
+import javax.jms.Message;
+import javax.jms.MessageConsumer;
+import javax.jms.MessageListener;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
@@ -18,7 +24,7 @@ public class ActivemqApplication {
 
         // 定义Destination
         Destination destination = new ActiveMQTopic("test.topic");
-        // Destination destination = new ActiveMQQueue("test.queue");
+       //  Destination destination = new ActiveMQQueue("test.queue");
 
         testDestination(destination);
 
@@ -28,7 +34,7 @@ public class ActivemqApplication {
     public static void testDestination(Destination destination) {
         try {
             // 创建连接和会话
-            ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://127.0.0.1:61616");
+            ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("tcp://120.79.218.62:61616");
             ActiveMQConnection conn = (ActiveMQConnection) factory.createConnection();
             conn.start();
             Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -37,6 +43,7 @@ public class ActivemqApplication {
             MessageConsumer consumer = session.createConsumer( destination );
             final AtomicInteger count = new AtomicInteger(0);
             MessageListener listener = new MessageListener() {
+                @Override
                 public void onMessage(Message message) {
                     try {
                         // 打印所有的消息内容
@@ -62,9 +69,9 @@ public class ActivemqApplication {
                 producer.send(message);
             }
 
-            Thread.sleep(2000);
-            session.close();
-            conn.close();
+//            Thread.sleep(2000);
+//            session.close();
+//            conn.close();
 
 
         } catch (Exception e) {
